@@ -20,7 +20,7 @@ type LoadingContextProviderProps = {
 };
 
 export const LoadingContext = createContext<LoadingContextDataProps>(
-  {} as LoadingContextDataProps
+  {} as LoadingContextDataProps,
 );
 
 export function LoadingContextProvider({

@@ -1,16 +1,11 @@
-import { StatusBar } from "react-native";
-
-import {
-  Roboto_700Bold,
-  Roboto_400Regular,
-  useFonts,
-} from "@expo-google-fonts/roboto";
-import { NativeBaseProvider } from "native-base";
-import { Loading } from "@components/Loading";
-import { THEME } from "@theme/index";
-import { Routes } from "@routes/index";
-import { AuthContextProvider } from "@contexts/AuthContext";
-import { LoadingContextProvider } from "@contexts/LoadingContext";
+import { Loading } from '@components/Loading';
+import { AuthContextProvider } from '@contexts/AuthContext';
+import { LoadingContextProvider } from '@contexts/LoadingContext';
+import { Roboto_400Regular, Roboto_700Bold, useFonts } from '@expo-google-fonts/roboto';
+import { Routes } from '@routes/index';
+import { THEME } from '@theme/index';
+import { NativeBaseProvider } from 'native-base';
+import { StatusBar } from 'react-native';
 
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
@@ -19,15 +14,9 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor="transparent"
-        translucent
-      />
+      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
       <LoadingContextProvider>
-        <AuthContextProvider>
-          {fontsLoaded ? <Routes /> : <Loading />}
-        </AuthContextProvider>
+        <AuthContextProvider>{fontsLoaded ? <Routes /> : <Loading />}</AuthContextProvider>
       </LoadingContextProvider>
     </NativeBaseProvider>
   );

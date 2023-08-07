@@ -1,6 +1,5 @@
-import { Center, Spinner, Text, VStack } from "native-base";
-
 import LogoSvg from "@assets/logo.svg";
+import { Center, Spinner, Text, VStack } from "native-base";
 
 export function SplashScreen() {
   return (
