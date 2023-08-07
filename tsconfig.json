@@ -3,7 +3,6 @@
   "compilerOptions": {
     "strict": true,
     "baseUrl": "./",
-    "forceConsistentCasingInFileNames": false,
     "paths": {
       "@assets/*": ["./src/assets/*"],
       "@components/*": ["./src/components/*"],

@@ -16,7 +16,7 @@ type APIInstanceProps = AxiosInstance & {
   registerInterceptTokenManager: (signOut: SignOut) => () => void;
 };
 
-let failedQueue: PromisseType[] = [];
+let failedQueue: Array<PromisseType> = [];
 let isRefreshing = false;
 
 const API = axios.create({
@@ -75,7 +75,7 @@ API.registerInterceptTokenManager = (signOut) => {
                 !(originalRequestConfig.data instanceof FormData)
               ) {
                 originalRequestConfig.data = JSON.parse(
-                  originalRequestConfig.data,
+                  originalRequestConfig.data
                 );
               }
 
@@ -115,7 +115,7 @@ API.registerInterceptTokenManager = (signOut) => {
       }
 
       return Promise.reject(requestError);
-    },
+    }
   );
 
   return () => {

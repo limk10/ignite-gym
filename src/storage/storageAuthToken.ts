@@ -1,6 +1,5 @@
 import { UserDTO } from "@dtos/UserDTO";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
 import { AUTH_TOKEN_STORAGE } from "./storageConfig";
 
 type AuthTokenProps = {
@@ -14,7 +13,7 @@ export async function storageAuthTokenSave({
 }: AuthTokenProps) {
   await AsyncStorage.setItem(
     AUTH_TOKEN_STORAGE,
-    JSON.stringify({ token, refresh_token }),
+    JSON.stringify({ token, refresh_token })
   );
 }
 

@@ -1,49 +1,43 @@
-import { default as defaultUserPhoto } from '@assets/userPhotoDefault.png';
-import { MaterialIcons } from '@expo/vector-icons';
-import { useAuth } from '@hooks/useAuth';
-import { API } from '@service/api';
-import { HStack, Heading, Icon, Text, VStack } from 'native-base';
-import { TouchableOpacity } from 'react-native';
+import { HStack, Heading, Icon, Text, VStack } from "native-base";
+import { MaterialIcons } from "@expo/vector-icons";
 
-import { useNavigation } from '@react-navigation/native';
-import { AppNavigatorRoutesProps } from '@routes/app.routes';
-import { UserPhoto } from './UserPhoto';
+import { UserPhoto } from "./UserPhoto";
+import { TouchableOpacity } from "react-native";
+
+import UserPhotoImge from "@assets/userPhotoDefault.png";
+import { useAuth } from "@hooks/useAuth";
+
+import defaultUserPhoto from "@assets/userPhotoDefault.png";
+import { API } from "@service/api";
 
 export function HomeHeader() {
-  const navigation = useNavigation<AppNavigatorRoutesProps>();
   const { user, signOut } = useAuth();
-
-  function handleProfile() {
-    navigation.navigate('profile');
-  }
-
   return (
-    <HStack pt={16} pb={5} px={4} alignItems="center">
-      <TouchableOpacity onPress={handleProfile}>
-        <UserPhoto
-          source={
-            user.avatar
-              ? { uri: `${API.defaults.baseURL}/avatar/${user.avatar}` }
-              : defaultUserPhoto
-          }
-          defaultSource={defaultUserPhoto}
-          alt="Imagem do usuário"
-          size={12}
-          mr={4}
-        />
-      </TouchableOpacity>
+    <HStack bg="gray.600" pt={16} pb={5} px={4} alignItems="center">
+      <UserPhoto
+        source={
+          user.avatar
+            ? { uri: `${API.defaults.baseURL}/avatar/${user.avatar}` }
+            : defaultUserPhoto
+        }
+        defaultSource={UserPhotoImge}
+        alt="Imagem do usuário"
+        size={16}
+        mr={4}
+      />
 
-      <VStack flex={1} alignItems="center">
-        <Text color="body" textAlign="center">
-          Seu painel está pronto!
+      <VStack flex={1}>
+        <Text color="gray.100" fontSize="md">
+          Olá,
         </Text>
-        <Heading color="title" fontSize="lg" ml={1} fontFamily="heading">
-          Olá, Matheus
+
+        <Heading color="gray.100" fontSize="lg" fontFamily="heading">
+          {user.name}
         </Heading>
       </VStack>
 
       <TouchableOpacity onPress={signOut}>
-        <Icon as={MaterialIcons} name="logout" color="gray.50" ml={7} size={7} />
+        <Icon as={MaterialIcons} name="logout" color="gray.200" size={7} />
       </TouchableOpacity>
     </HStack>
   );

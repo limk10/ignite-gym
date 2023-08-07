@@ -1,39 +1,34 @@
-import { useLoading } from '@hooks/useLoading';
-import { Button as ButtonNativeBase, IButtonProps, Text } from 'native-base';
+import { useLoading } from "@hooks/useLoading";
+import { Button as ButtonNativeBase, IButtonProps, Text } from "native-base";
 
 type ComponentProps = IButtonProps & {
   title: string;
-  variant?: 'solid' | 'outline';
-  color?: string;
+  variant?: "solid" | "outline";
 };
 
-export function Button({ title, variant = 'solid', color, ...rest }: ComponentProps) {
+export function Button({ title, variant = "solid", ...rest }: ComponentProps) {
   const { loadingButtons } = useLoading();
-
-  function _renderColor() {
-    if (color) return color;
-    else if (variant === 'outline') return 'primary.700';
-    else return 'gray.700';
-  }
 
   return (
     <ButtonNativeBase
       w="full"
-      h={12}
-      shadow={variant === 'outline' ? 'none' : 4}
+      h={14}
       isLoading={loadingButtons}
       isLoadingText="Um momento..."
-      rounded="full"
-      borderColor="primary.700"
-      bg={variant === 'outline' ? 'transparent' : 'primary.700'}
-      borderWidth={variant === 'outline' ? 0.5 : 0}
+      rounded="sm"
+      borderColor="green.500"
+      bg={variant === "outline" ? "transparent" : "green.700"}
+      borderWidth={variant === "outline" ? 0.5 : 0}
       _pressed={{
-        bg: variant === 'outline' ? 'gray.800' : 'primary.700',
-        shadow: 'none',
+        bg: "gray.500",
       }}
       {...rest}
     >
-      <Text shadow="none" fontSize="md" color={_renderColor()}>
+      <Text
+        color={variant === "outline" ? "green.500" : "white"}
+        fontFamily="heading"
+        fontSize="sm"
+      >
         {title}
       </Text>
     </ButtonNativeBase>
